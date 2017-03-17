@@ -1,0 +1,23 @@
+<h3>Search Word From Phone Number</h3>
+<%= form_tag phone_number_in_word_index_path do %>
+<h4>Please Enter 10 Digit Phone Number</h4>
+	<p>
+		<%= text_field_tag :phonenumber, (params[:phonenumber] if @error), class: "numeric", maxlength: 10 %> 
+		<%= @error if @error.present? %>
+	</p>
+	<%= submit_tag "Submit" %>
+<% end %>
+
+<%- if @output %>
+	<h4> Input Phone Number:: <%= params[:phonenumber]%></h4>
+	<h4> Output: </h4>
+	<p>Total Time Taken:: <%= @totaltime if @totaltime %> Sec.</p>
+	<p><%= @output %></p>
+<% end %>
+
+<script type="text/javascript">
+	$(document).on("input", ".numeric", function() {
+	    this.value = this.value.replace(/[^\d\.\-]/g,'');
+	});
+
+</script>
